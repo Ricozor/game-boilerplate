@@ -1,5 +1,7 @@
 ;(function() {
 
+  'use strict';
+
   /* ==========================================================================
      GAME
     ========================================================================== */
@@ -9,7 +11,7 @@
 
     // In index.html, there is a canvas tag that the game will be drawn in.
     // Grab that canvas out of the DOM.
-    var canvas = document.getElementById("space-invaders");
+    var canvas = document.getElementById('space-invaders');
 
     // Get the drawing context.  This contains functions that let you draw to the canvas.
     var screen = canvas.getContext('2d');
@@ -31,16 +33,16 @@
     // Get the shoot sound from the DOM and store it on the game object.
     this.shootSound = document.getElementById('shoot-sound');
 
-    var self = this;
+    var _this = this;
 
     // Main game tick function.  Loops forever, running 60ish times a second.
     var tick = function() {
 
       // Update game state.
-      self.update();
+      _this.update();
 
       // Draw game bodies.
-      self.draw(screen, gameSize);
+      _this.draw(screen, gameSize);
 
       // Queue up the next call to tick with the browser.
       requestAnimationFrame(tick);
@@ -55,12 +57,12 @@
 
     // **update()** runs the main game logic.
     update: function() {
-      var self = this;
+      var _this = this;
 
       // `notCollidingWithAnything` returns true if passed body
       // is not colliding with anything.
       var notCollidingWithAnything = function(b1) {
-        return self.bodies.filter(function(b2) { return colliding(b1, b2); }).length === 0;
+        return _this.bodies.filter(function(b2) { return colliding(b1, b2); }).length === 0;
       };
 
       // Throw away bodies that are colliding with something. They
@@ -292,10 +294,6 @@
     this.KEYS = { LEFT: 37, RIGHT: 39, S: 83 };
   };
 
-
-
-
-
   // Other functions
   // ---------------
 
@@ -328,17 +326,13 @@
 
 
 
-
-
   /* ==========================================================================
      START GAME
      ========================================================================== */
+
   // When the DOM is ready, create (and start) the game.
   window.addEventListener('load', function() {
     new Game();
   });
-
-
-
 
 })();
